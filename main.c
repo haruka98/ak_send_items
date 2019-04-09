@@ -15,8 +15,8 @@ int main(int argc, char* argv[]) {
 	send_items_file = fopen("send_items.sql", "a");
 	
 	//Test additional start info
-	if(argc > 2) {
-		request_id = (int) strtol(argv[2], (char**) NULL, 10);	//use the defined request_id to start
+	if(argc > 1) {
+		request_id = (int) strtol(argv[1], (char**) NULL, 10);	//use the defined request_id to start
 	}
 	
 	while(TRUE) {	//main loop
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 		sprintf(entire_str, "INSERT INTO \"item_receivable\" VALUES (%d, 1, '2001-1-1 11:11:11.00001', '2001-1-1 11:11:11.00001', '", request_id);
 		
 		//test for account name
-		if(argc == 1) {
+		if(argc < 3) {
 			printf("Account name:\n");
 			scanf("%s", &input_str);
 			if(strcmp("exit", input_str) == 0) {
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 				strcat(entire_str, input_str);
 			}
 		} else {
-			strcat(entire_str, argv[1]);
+			strcat(entire_str, argv[2]);
 		}
 		strcat(entire_str, "', ");
 		
